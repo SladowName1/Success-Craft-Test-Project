@@ -1,0 +1,67 @@
+.cards {
+    display:flex;
+    align-items: center;
+    column-gap: 2vw;
+    width: 90vw;
+    padding: 15px;
+    flex-wrap: wrap;
+}
+
+.card {
+    display:flex;
+    flex-direction: column;
+    min-width: 300px;
+    max-width: 20vw;
+    border-radius: 30px;
+    background-color: white;
+    box-shadow: 0 4px 29px -6px rgba(84,197,255,.8);
+    font-size: 20px;
+    line-height: 26px;
+    padding:15px;
+    margin-bottom: 20px;
+}
+
+.title {
+    color:#002394;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.value {
+    color:black;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 22px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.current-date-and-time {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.name {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 25px;
+    margin-bottom: 10px;
+}
+
+.temperature {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 40px;
+    font-size: 50px;
+    color:#002394;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+
+
