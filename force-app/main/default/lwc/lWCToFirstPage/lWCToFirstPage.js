@@ -14,10 +14,10 @@ export default class LWCToFirstPage extends LightningElement {
 
     handleChangeCity(event){
         this.changeCityName = event.target.value;
+        this.cityName = this.changeCityName;
     }
 
     handleClick(){
-        this.cityName = this.changeCityName;
         this.forecastWeather=JSON.parse(this.forecastWeather.data);
         const formattedDate = [];
         const dateForName = [];

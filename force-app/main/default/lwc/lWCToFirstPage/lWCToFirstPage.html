@@ -1,6 +1,6 @@
 <template>
     <lightning-input type="text" value={cityName} onchange={handleChangeCity}></lightning-input>
-    <lightning-button label="Neutral" title="Non-primary action" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+    <lightning-button label="Forecast" title="Non-primary action" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
     <template if:true={listForecast}>    
     <div class="cards" >
         <template for:each={listForecast} for:item="list">
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="temperature">
-                {list.Temperature__c} C
+                {list.Temperature__c} °C
             </div>
             <div class="weathere-message">
                 <div class="weather-message-title title">Weather:</div>
