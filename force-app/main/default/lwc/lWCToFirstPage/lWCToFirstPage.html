@@ -1,20 +1,30 @@
 <template>
     <lightning-input type="text" value={cityName} onchange={handleChangeCity}></lightning-input>
     <lightning-button label="Neutral" title="Non-primary action" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
-    <template if:true={forecastWeather.list}>    
+    <template if:true={listForecast}>    
     <div class="cards" >
-        <template for:each={forecastWeather.list} for:item="forecast">
-        <div class="card" key={forecast.index}>
+        <template for:each={listForecast} for:item="list">
+        <div class="card" key={list.Id}>
             <div class="name">
                 <div class="name-title title">Name: </div>
-                <div class="name-value value">{cityName}</div>
+                <div class="name-value value">{list.Name}</div>
             </div>
             <div class="current-date-and-time">
-                <div class="current-date-title title">Date:</div>
-                <div class="current-date-value value">{forecast.dt_txt}</div>
+                <div class="current-date">
+                    <div class="current-date-title title">Date:</div>
+                    <div class="current-date-value value">{list.Date__c}</div>
+                </div>
+                <div class="current-time">
+                    <div class="current-time-title title">Time:</div>
+                    <div class="current-time-value value">{list.Time__c}:00:00</div>
+                </div>
             </div>
             <div class="temperature">
-                {forecast.main.temp} C
+                {list.Temperature__c} C
+            </div>
+            <div class="weathere-message">
+                <div class="weather-message-title title">Weather:</div>
+                <div class="weather-message-value value">{list.Weather_Message__c}</div>
             </div>
         </div>
     </template>

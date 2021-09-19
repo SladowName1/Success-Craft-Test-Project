@@ -2,11 +2,13 @@ import { LightningElement,track, wire } from 'lwc';
 import loadInfoAboutWeather from '@salesforce/apex/WeatherController.ApiCall'
 import insertToCity from '@salesforce/apex/WeatherController.insertToCity'
 import insertToForecast from '@salesforce/apex/WeatherController.insertToForecast'
+import listForecast from '@salesforce/apex/WeatherController.listForecast'
 
 export default class LWCToFirstPage extends LightningElement {
     cityName = '';
     changeCityName;
-    stringExportWeatherMessage;
+    @track listForecast;
+    counter=0;
 
     @wire(loadInfoAboutWeather,{City:'$cityName'}) forecastWeather;
 
@@ -48,5 +50,18 @@ export default class LWCToFirstPage extends LightningElement {
 
         insertToCity({City:cityName,Country:countryName});
         insertToForecast({DateForName:dateForName,City:cityName,DateForDateField:formattedDate,TimeForTimeField:timeForTimeFiled,temperature:temps});
+
+        listForecast({DateForName:dateForName,City:cityName,DateForDateField:formattedDate,TimeForTimeField:timeForTimeFiled,temperature:temps})
+        .then((result)=>{
+            this.listForecast=result;
+            for(let i=0;i<this.listForecast.length;i++){
+                this.listForecast[i].Time__c=this.listForecast[i].Time__c/10800000*3;
+            }
+        })
+        .catch((error)=>{
+            console.log(error);
+        });
+        this.listForecast=null;
+        console.log(this.listForecast);
     }
 }

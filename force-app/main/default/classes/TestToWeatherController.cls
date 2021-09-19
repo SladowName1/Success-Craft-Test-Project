@@ -50,4 +50,28 @@ private class TestToWeatherController {
         List<Forecast__c> forecast=[select id, Name from Forecast__c limit :3];
         delete forecast;
     }
+
+    @isTest(SeeAllData=true) static void TestSelectForeacst(){
+        List<String> dateForName=new List<String>();
+        DateForName.add('11/12/2020');
+        DateForName.add('13/12/2020');
+        DateForName.add('14/12/2020');
+
+        List<String> dateForField=new List<String>();
+        dateForField.add('11/11/2020');
+        dateForField.add('8/11/2020');
+        dateForField.add('10/3/2020');
+
+        List<String> timeForField=new List<String>();
+        timeForField.add('11.12.23');
+        timeForField.add('13.12.20');
+        timeForField.add('14.12.13');
+
+        List<String> temperature=new List<String>();
+        temperature.add('13');
+        temperature.add('15');
+        temperature.add('-30');
+
+        WeatherController.listForecast(dateForName,'Minsk',dateForField,timeForField,temperature);
+    }
 }

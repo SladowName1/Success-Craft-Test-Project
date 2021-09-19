@@ -60,4 +60,24 @@ public with sharing class WeatherController {
             System.debug(e);
         }   
     }
+
+    @AuraEnabled
+    public static List<Forecast__c> listForecast(List<String> DateForName,String City, List<String> DateForDateField,List<String> TimeForTimeField,List<String> temperature){
+        List<Forecast__c> forecast=new List<Forecast__c>();
+        City__c myCity=[select Id from City__c where Name=:City];
+        for(Integer i=0;i<DateForName.size();i++){
+            date mydate=date.parse(DateForDateField[i]);
+
+            List<String> values=TimeForTimeField[i].split('\\.');
+            Integer hours=Integer.valueof(values[0]);
+            Integer min=Integer.valueof(values[1]);
+            Integer sec=Integer.valueof(values[2]);
+            Time newTime=Time.newInstance(hours,min,sec,0);
+
+            forecast.add([select Name, Date__c, Time__c, City__c, Temperature__c, Weather_Message__c from Forecast__c where Name=:City+'-'+DateForName[i] and
+            Date__c=:mydate and Time__c=:newTime and City__c=:myCity.Id and Temperature__c=:Decimal.valueof(temperature[i])]);
+        }
+
+        return forecast;
+    }
 }
